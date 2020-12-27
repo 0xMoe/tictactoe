@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//declaring the array globally as it'll be used in all functions
 char a[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 void printBoard();
 int markBoard(int choice, char mark);
@@ -30,12 +31,14 @@ int main()
         scanf("%d", &choice);
 
         marker = markBoard(choice, mark);
+        // decrement player if the input choice is invalid
         if(marker == 0)
         {
             --player;
         }
 
         checker = checkWinner();
+        // increment player only if no one has either win or draw
         if(checker == -1)
         {
             player++;
@@ -55,7 +58,8 @@ int main()
     }
 }
 
-// print out the board
+// a function to print out the board and assigning
+// the array elements each to its required place
 void printBoard()
 {
     printf("____Player 1 (X) ---- Player 2 (O) ____\n\n");
@@ -72,10 +76,15 @@ void printBoard()
 }
 
 int markBoard(int choice, char mark)
-{
+{   
+    // another simple approach to simplify the if conditions
+    // by changing the input choice into a char and making 
+    // a general case for all array elements
+
     // int iChoice = choice - '0';
     // if(a[iChoice] == choice && iChoice!= 0)  //bonus
     //     a[iChoice] = mark;
+
     if(choice == 1 && a[1] == '1')
         a[1] = mark;
     else if(choice == 2 && a[2] == '2')
@@ -102,7 +111,8 @@ int markBoard(int choice, char mark)
 }
 
 int checkWinner()
-{
+{   
+    // Winning conditions
     if(a[1] == a[2] && a[2] == a[3])
         return 1;
     if(a[4] == a[5] && a[5] == a[6])
@@ -120,7 +130,7 @@ int checkWinner()
     if (a[3] == a[5] && a[5] == a[7])
         return 1;
     if(a[1] != '1' && a[2] != '2' && a[3] != '3' && a[4] != '4' && a[5] != '5' && a[6] != '6' && a[7] != '7' &&
-    a[8] != '8' && a[9] != '9')
+    a[8] != '8' && a[9] != '9')     //Draw Condition
         return 0;
 
     return -1;
