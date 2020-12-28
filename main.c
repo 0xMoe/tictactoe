@@ -79,7 +79,7 @@ int markBoard(int choice, char mark)
 {   
     // another simple approach to simplify the if conditions
     // by changing the input choice into a char and making 
-    // a general case for all array elements
+    // a general case for all winning conditions
 
     // int iChoice = choice - '0';
     // if(a[iChoice] == choice && iChoice!= 0)  //bonus
